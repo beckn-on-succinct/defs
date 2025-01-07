@@ -153,7 +153,7 @@ To get registry's public key:
 *   Using verified methods to update itself. 
 	* Add Documents
 ```
-curl -H 'content-type:application/json' https://{{registry_server}}/subjects/users/venkatramanm -d @x.json 
+curl -H 'content-type:application/json' https://{{registry_server}}/subjects/users/venkatramanm/documents -d @x.json 
 
 where x.json contents are 
 {
