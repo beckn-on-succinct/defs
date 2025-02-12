@@ -1,13 +1,16 @@
 package in.succinct.defs.db.model.did.subject;
 
+import com.venky.swf.db.annotations.column.UNIQUE_KEY;
 import com.venky.swf.db.model.Model;
 import in.succinct.defs.db.model.did.documents.Document;
 import in.succinct.defs.db.model.did.identifier.Did;
 
 public interface Service extends Model , Did {
+    @UNIQUE_KEY("K2")
     Long getSubjectId();
     void setSubjectId(Long id);
     Subject getSubject();
+    
     
     
     String getEndPoint();
@@ -17,6 +20,7 @@ public interface Service extends Model , Did {
     
     
     // End point provides apis as listed in the open api spec attached to the schema.
+    @UNIQUE_KEY("K2")
     Long getSpecificationId();
     void setSpecificationId(Long id);
     Document getSpecification();

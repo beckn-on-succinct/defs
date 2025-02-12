@@ -10,8 +10,6 @@ import com.venky.swf.db.model.Model;
 import in.succinct.defs.db.model.did.documents.Attestation;
 import in.succinct.defs.db.model.did.identifier.Did;
 import in.succinct.defs.util.KeyManager;
-import org.bouncycastle.jcajce.spec.EdDSAParameterSpec;
-import org.bouncycastle.jcajce.spec.XDHParameterSpec;
 
 import javax.crypto.KeyAgreement;
 import javax.crypto.SecretKey;
@@ -105,8 +103,8 @@ public interface VerificationMethod extends Model, Did {
     }
     enum PublicKeyType {
         
-        Ed25519(EdDSAParameterSpec.Ed25519),
-        X25519(XDHParameterSpec.X25519) {
+        Ed25519("Ed25519"),
+        X25519("X25519") {
             @Override
             public boolean isChallengeEncrypted() {
                 return true;

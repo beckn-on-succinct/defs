@@ -3,8 +3,8 @@ package in.succinct.defs.controller;
 import com.venky.swf.db.model.Model;
 import com.venky.swf.db.model.reflection.ModelReflector;
 import com.venky.swf.path.Path;
-import in.succinct.defs.db.model.did.documents.Document;
 import in.succinct.defs.db.model.did.documents.Attestation;
+import in.succinct.defs.db.model.did.documents.Document;
 import in.succinct.defs.db.model.did.subject.Service;
 import in.succinct.defs.db.model.did.subject.Subject;
 import in.succinct.defs.db.model.did.subject.VerificationMethod;
@@ -20,7 +20,6 @@ public class SubjectsController extends AbstractDirectoryController<Subject> {
     
     
     
-
     @Override
     protected Map<Class<? extends Model>, List<String>> getIncludedModelFields() {
         Map<Class<? extends Model>, List<String>> map =  super.getIncludedModelFields();

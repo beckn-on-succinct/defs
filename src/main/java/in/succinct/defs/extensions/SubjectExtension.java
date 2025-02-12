@@ -13,6 +13,8 @@ import in.succinct.defs.db.model.did.subject.VerificationMethod;
 import in.succinct.defs.db.model.did.subject.VerificationMethod.PublicKeyType;
 import in.succinct.defs.db.model.did.subject.VerificationMethod.Purpose;
 
+import java.util.UUID;
+
 public class SubjectExtension extends ModelOperationExtension<Subject> {
     static  {
         registerExtension(new SubjectExtension());
@@ -21,6 +23,10 @@ public class SubjectExtension extends ModelOperationExtension<Subject> {
     @Override
     protected void beforeValidate(Subject instance) {
         super.beforeValidate(instance);
+        if (ObjectUtil.isVoid(instance.getName())){
+            instance.setName(UUID.randomUUID().toString());
+        }
+        
         if (ObjectUtil.isVoid(instance.getDid())){
             instance.setDid(String.format("/subjects/%s".formatted(instance.getName())));
             Subject persisted = Database.getTable(Subject.class).getRefreshed(instance);

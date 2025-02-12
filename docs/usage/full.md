@@ -1,4 +1,4 @@
-# Decentralized File system (a reference did implementation
+	# Decentralized File system (a reference did implementation
 ## Deployed at \{{registry_server}}) 
 
 * Onboarding a controller. 
