@@ -1,6 +1,7 @@
 package in.succinct.defs.controller;
 
 import com.venky.core.string.StringUtil;
+import com.venky.swf.db.annotations.column.ui.mimes.MimeType;
 import com.venky.swf.db.model.Model;
 import com.venky.swf.db.model.reflection.ModelReflector;
 import com.venky.swf.path.Path;
@@ -27,7 +28,9 @@ public class DocumentsController extends AbstractDirectoryController<Document> {
     
     @Override
     protected View respond(List<Document> models) {
-        if (!getPath().getTarget().endsWith("/stream")){
+        boolean isBinaryStream = getPath().getTarget().endsWith("/binary-stream");
+        boolean isStream = getPath().getTarget().endsWith("/stream");
+        if (!isStream && !isBinaryStream ){
             return super.respond(models);
         }else if (models.size() > 1){
             throw new RuntimeException("Incomplete Did ");
@@ -35,9 +38,13 @@ public class DocumentsController extends AbstractDirectoryController<Document> {
             throw new RuntimeException("Invalid Did");
         }
         Document document = models.get(0);
-        
-        return new BytesView(getPath(), StringUtil.readBytes(document.getStream()), document.getStreamContentType());
+        if (isBinaryStream){
+            return new BytesView(getPath(), StringUtil.readBytes(document.getStream()), MimeType.APPLICATION_OCTET_STREAM);
+        }else {
+            return new BytesView(getPath(), StringUtil.readBytes(document.getStream()), document.getStreamContentType());
+        }
     }
+    
     @Override
     protected Map<Class<? extends Model>, List<String>> getIncludedModelFields() {
         Map<Class<? extends Model>, List<String>> map = super.getIncludedModelFields();
