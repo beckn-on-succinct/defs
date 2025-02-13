@@ -22,7 +22,7 @@ public class DocumentsController extends AbstractDirectoryController<Document> {
     @Override
     protected String did() {
         return String.format("%s",
-                getPath().getTarget().replaceAll("/stream$","")); // Target includes name
+                getPath().getTarget().replaceAll("/stream$","").replaceAll("/binary-stream$","")); // Target includes name
         
     }
     
